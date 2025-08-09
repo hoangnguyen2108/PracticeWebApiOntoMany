@@ -30,8 +30,22 @@ namespace PracticeWebApiOntoMany.Data
             modelBuilder.ApplyConfiguration(new CategoryConfig());
 
             modelBuilder.ApplyConfiguration(new ProductConfig());
-                
-                
+
+            var hasher = new PasswordHasher<ApiUser>();
+            modelBuilder.Entity<ApiUser>().HasData(new ApiUser
+            {
+                Id = "69321195-8b73-4f1a-919b-e7deee4b3909",
+                UserName = "user1adin@gmail.com",
+                NormalizedUserName = "USER1admin@GMAIL.COM",
+                Email = "user1adin@gmail.com",
+                NormalizedEmail = "USER1admin@GMAIL.COM",
+                PasswordHash = hasher.HashPassword(null, "Longbadao123@"),
+                EmailConfirmed = true,
+                FirstName = "Jay",
+                LastName = "Van",
+
+
+            });
         }
     }
 }

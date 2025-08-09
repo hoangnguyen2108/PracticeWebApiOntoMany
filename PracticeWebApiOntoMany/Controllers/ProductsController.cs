@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ namespace PracticeWebApiOntoMany.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly IMapper _mapper;
@@ -49,6 +51,7 @@ namespace PracticeWebApiOntoMany.Controllers
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles ="Admin")]
         public async Task<ActionResult<EditProductDto>> PutProduct(int id, EditProductDto product)
         {
             var update = await _countryService.EditProduct(id,product);
@@ -62,6 +65,7 @@ namespace PracticeWebApiOntoMany.Controllers
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<EditProductDto>> PostProduct(EditProductDto product)
         {
             var update = await _countryService.CreateProduct(product);
@@ -74,6 +78,7 @@ namespace PracticeWebApiOntoMany.Controllers
 
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             await _countryService.DeleteProduct(id);

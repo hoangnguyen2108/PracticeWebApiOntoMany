@@ -10,6 +10,7 @@ namespace PracticeWebApiOntoMany.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class AccountController : ControllerBase
     {
         private readonly IAuthManager _authManager;

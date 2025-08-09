@@ -11,6 +11,7 @@ namespace PracticeWebApiOntoMany.Cofiguration
         {
             builder.HasData(new IdentityRole
             {
+                Id = "1b1bb66e-6aa2-4728-8b5b-4e6de4fd899b",
                 Name = "Admin",
                 NormalizedName = "ADMIN"
             }, new IdentityRole
